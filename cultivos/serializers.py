@@ -12,7 +12,7 @@ class PlagaSerializer(serializers.ModelSerializer):
         fields = ['id', 'descripcion']
 
 class CultivoSerializer(serializers.ModelSerializer):
-    zona = ZonaSerializer()
+    zona = ZonaSerializer
     plaga = PlagaSerializer
     class Meta:
         model = Cultivo
