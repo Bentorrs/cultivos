@@ -30,3 +30,13 @@ def api_modificar_cultivo(request, pk):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def api_eliminar_cultivo(request, pk):
+    try:
+        cultivo = Cultivo.objects.get(pk=pk)
+    except Cultivo.DoesNotExist:
+        return Response({'error': 'cultivo no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+    
+    cultivo.delete()
+    return Response({'mensaje': 'Cultivo eliminado correctamente'}, status=status.HTTP_204_NO_CONTENT)
